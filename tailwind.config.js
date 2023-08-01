@@ -14,6 +14,14 @@ module.exports = {
       '5xl': '3rem',
       '6xl': '4rem',
     },
+    screens: {
+      xl: { max: '1600px' },
+      lg: { max: '1199px' },
+      md: { max: '991px' },
+      sm: { max: '767px' },
+      xs: { max: '575px' },
+      xxs: { max: '480px' },
+    },
     extend: {
       colors: {
         gray: {
@@ -38,6 +46,16 @@ module.exports = {
           800: '#2c5282',
           900: '#2a4365',
         },
+        fastblue: '#0038e3',
+        darkgray: '#232323',
+        darkslateblue: '#1f232c',
+        lightgray: '#f7f7f7',
+        spanishgray: '#939393',
+        mediumgray: '#e4e4e4',
+        darkpurple2: '#241526',
+        coolgray: '#d6d5d5',
+        neonorange: '#ff7a56',
+        error: 'red',
       },
     },
   },
