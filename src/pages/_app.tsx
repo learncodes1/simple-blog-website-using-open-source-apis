@@ -4,6 +4,8 @@ import type { AppProps } from 'next/app';
 
 import Navbar from '@/components/Navbar';
 
+import { wrapper } from '../../store';
+
 const MyApp = ({ Component, pageProps }: AppProps) => (
   <>
     <Navbar />
@@ -11,4 +13,4 @@ const MyApp = ({ Component, pageProps }: AppProps) => (
   </>
 );
 
-export default MyApp;
+export default wrapper.withRedux(MyApp);

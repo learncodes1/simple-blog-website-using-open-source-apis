@@ -1,6 +1,8 @@
 import { useState } from 'react';
+import type { AppStore } from 'store';
+import { wrapper } from 'store';
+import { fetchBlog, filteredData } from 'store/slices/search';
 
-import { searchBlog } from '@/api/api';
 import BlogList from '@/components/BlogList';
 
 import type { PostData } from '..';
@@ -9,28 +11,45 @@ type SSRpostListProp = {
   posts: PostData[];
 };
 
-export async function getStaticProps(context: any) {
-  const { params } = context;
-  const posts = await searchBlog(params.search);
-  return {
-    props: {
-      posts,
-    },
-    revalidate: 1800,
-  };
-}
+// with redux
+export const getServerSideProps = wrapper.getServerSideProps<AppStore>(
+  (store) => async (context: any) => {
+    const { params } = context;
+    await store.dispatch(fetchBlog(params.search));
 
-export async function getStaticPaths() {
-  const posts = await searchBlog();
+    const posts = filteredData(store.getState());
 
-  const paths =
-    posts.length !== undefined &&
-    posts.map((item: any) => ({
-      params: { search: item.title.toLowerCase().replace(/ /g, '-') },
-    }));
+    return {
+      props: {
+        posts,
+      },
+    };
+  },
+);
 
-  return { paths, fallback: 'blocking' };
-}
+// without redux
+// export async function getStaticProps(context: any) {
+//   const { params } = context;
+//   const posts = await searchBlog(params.search);
+//   return {
+//     props: {
+//       posts,
+//     },
+//     revalidate: 1800,
+//   };
+// }
+
+// export async function getStaticPaths() {
+//   const posts = await searchBlog();
+
+//   const paths =
+//     posts.length !== undefined &&
+//     posts.map((item: any) => ({
+//       params: { search: item.title.toLowerCase().replace(/ /g, '-') },
+//     }));
+
+//   return { paths, fallback: 'blocking' };
+// }
 
 const Search = ({ posts }: SSRpostListProp) => {
   const itemsPerPage = 10;

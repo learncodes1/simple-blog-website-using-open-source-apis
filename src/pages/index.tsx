@@ -1,12 +1,13 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
+import type { AppStore } from 'store';
+import { wrapper } from 'store';
+import { fetchBlogData, selectBlogData } from 'store/slices/blog';
 
 import BlogList from '@/components/BlogList';
 import { LoadingList } from '@/components/Loading';
 import { Meta } from '@/layouts/Meta';
 import { Main } from '@/templates/Main';
-
-import { blogFetchPage } from '../api/api';
 
 export interface PostData {
   id: number;
@@ -90,14 +91,30 @@ const Index = ({ posts }: SSRpostsProp) => {
   );
 };
 
-export async function getServerSideProps(context: any) {
-  const { page } = context.query;
-  const data = await blogFetchPage(page ?? 1);
-  return {
-    props: {
-      posts: data,
-    },
-  };
-}
+// with redux
+export const getServerSideProps = wrapper.getServerSideProps<AppStore>(
+  (store) => async (context: any) => {
+    const { page } = context.query;
+    await store.dispatch(fetchBlogData(page));
+
+    const posts = selectBlogData(store.getState());
+
+    return {
+      props: {
+        posts,
+      },
+    };
+  },
+);
+
+// export async function getServerSideProps(context: any) {
+//   const { page } = context.query;
+//   const data = await blogFetchPage(page ?? 1);
+//   return {
+//     props: {
+//       posts: data,
+//     },
+//   };
+// }
 
 export default Index;
