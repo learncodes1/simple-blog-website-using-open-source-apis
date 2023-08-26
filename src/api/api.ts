@@ -41,7 +41,7 @@ export const blogFetchPage = async (pageNo?: number) => {
       return { ...item, ...imageLink[i] };
     });
 
-    return blogData;
+    return {posts:blogData,status:200};
   } catch (error) {
     return { status: 500 };
   }
@@ -66,7 +66,7 @@ export const searchBlog = async (params?: string) => {
     const blogData = filteredData.map((item: any, i: number) => {
       return { ...item, ...imageLink[i] };
     });
-    return blogData;
+    return {posts:blogData,status:200};
   } catch (error) {
     return error;
   }

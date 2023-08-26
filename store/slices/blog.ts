@@ -6,13 +6,17 @@ import { blogFetchPage } from '@/api/api';
 
 import type { AppState, AppThunk } from '..';
 
+interface BlogState {
+  data: any;
+}
+
+const initialState:BlogState = {
+  data: null,
+}
+
 export const BlogSlice = createSlice({
   name: 'blog',
-
-  initialState: {
-    data: null,
-  },
-
+initialState,
   reducers: {
     setBlogData: (state, action: PayloadAction<any>) => {
       state.data = action.payload;
@@ -20,7 +24,7 @@ export const BlogSlice = createSlice({
   },
 
   extraReducers: (builder) => {
-    builder.addCase(HYDRATE, (state, action) => {
+    builder.addCase(HYDRATE, (state:any, action:any) => {
       if (!action.payload.blog) {
         return state;
       }
@@ -34,7 +38,7 @@ export const { setBlogData } = BlogSlice.actions;
 export const selectBlogData = (state: AppState) => state.blog.data;
 
 export const fetchBlogData =
-  (page): AppThunk =>
+  (page:any): AppThunk =>
   async (dispatch) => {
     const data = await blogFetchPage(page);
     dispatch(setBlogData(data));

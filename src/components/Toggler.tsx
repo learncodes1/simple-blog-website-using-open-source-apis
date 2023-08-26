@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 
-const Toggler = ({ onChange, className }) => {
+type Toggler = {
+  onChange: any;
+  className: String
+};
+const Toggler = ({ onChange, className }:Toggler) => {
   const [toggle, setToggle] = useState<boolean>(false);
 
   return (

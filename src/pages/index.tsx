@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import type { AppStore } from 'store';
+// import type { AppStore } from 'store';
 import { wrapper } from 'store';
 import { fetchBlogData, selectBlogData } from 'store/slices/blog';
 
@@ -14,13 +14,14 @@ export interface PostData {
   body: string;
   img: string;
   title: string;
-  status:number;
 }
+
 type SSRpostsProp = {
-  posts: PostData[];
+  posts:{posts: PostData[];}
+  status:number;
 };
 
-const Index = ({ posts }: SSRpostsProp) => {
+const Index = ({ posts,status }: SSRpostsProp) => {
   const router = useRouter();
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
@@ -63,8 +64,8 @@ const Index = ({ posts }: SSRpostsProp) => {
       <div className="mx-auto my-0 grid w-9/12 grid-cols-4 gap-1 xl:w-11/12 xl:gap-2 lg:grid-cols-3 md:grid-cols-2 sm:!flex sm:grid-cols-1 sm:flex-col sm:items-center">
         {loading ? (
           <LoadingList />
-        ) : posts.status !== 500 ? (
-          <BlogList posts={posts} />
+        ) : status !== 500 ? (
+          <BlogList posts={posts.posts} />
         ) : (
           <div className="">No Post Found</div>
         )}
@@ -93,19 +94,18 @@ const Index = ({ posts }: SSRpostsProp) => {
 };
 
 // with redux
-export const getServerSideProps = wrapper.getServerSideProps<AppStore>(
-  (store) => async (context: any) => {
+export const getServerSideProps = wrapper.getServerSideProps(
+  (store) => async(context) => {
     const { page } = context.query;
-    await store.dispatch(fetchBlogData(page));
-
-    const posts = selectBlogData(store.getState());
+    await store.dispatch(fetchBlogData(page)); // Assuming fetchBlogData is an imported action creator
+    const posts = selectBlogData(store.getState()); // Assuming selectBlogData is an imported selector function
 
     return {
       props: {
         posts,
       },
     };
-  },
+  }
 );
 
 // export async function getServerSideProps(context: any) {
