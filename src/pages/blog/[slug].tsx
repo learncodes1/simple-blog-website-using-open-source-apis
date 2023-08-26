@@ -1,7 +1,7 @@
-import { blogFetchPost } from "@/api/api";
-import BlogDetails from "@/components/BlogDetails";
+import { blogFetchPost } from '@/api/api';
+import BlogDetails from '@/components/BlogDetails';
 
-import type { PostData } from "../index";
+import type { PostData } from '../index';
 
 type SSRpostDetailsProp = {
   postDetails: PostData;

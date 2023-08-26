@@ -1,10 +1,10 @@
-import "../styles/global.css";
+import '../styles/global.css';
 
-import type { AppProps } from "next/app";
+import type { AppProps } from 'next/app';
 
-import Navbar from "@/components/Navbar";
+import Navbar from '@/components/Navbar';
 
-import { wrapper } from "../../store";
+import { wrapper } from '../../store';
 
 const MyApp = ({ Component, pageProps }: AppProps) => (
   <>

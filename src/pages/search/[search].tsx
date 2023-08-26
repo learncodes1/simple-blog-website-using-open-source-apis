@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useState } from 'react';
 // import type { AppStore } from 'store';
-import { wrapper } from "store";
-import { fetchBlog, filteredData } from "store/slices/search";
+import { wrapper } from 'store';
+import { fetchBlog, filteredData } from 'store/slices/search';
 
-import BlogList from "@/components/BlogList";
+import BlogList from '@/components/BlogList';
 
-import type { PostData } from "..";
+import type { PostData } from '..';
 
 type SSRpostListProp = {
   posts: { posts: PostData[] };
@@ -66,32 +66,32 @@ const Search = ({ posts }: SSRpostListProp) => {
 
   return posts.posts.length !== 0 ? (
     <>
-      <div className="mb-10  mt-28 flex justify-center text-lg text-slate-600">
-        Total: <span className="mx-1 font-bold"> {posts.posts.length} </span>{" "}
+      <div className='mb-10  mt-28 flex justify-center text-lg text-slate-600'>
+        Total: <span className='mx-1 font-bold'> {posts.posts.length} </span>{' '}
         result found
       </div>
-      <div className="mx-auto my-0 grid w-9/12 grid-cols-4 gap-1 xl:w-11/12 xl:gap-2 lg:grid-cols-3 md:grid-cols-2 sm:!flex sm:grid-cols-1 sm:flex-col sm:items-center ">
+      <div className='mx-auto my-0 grid w-9/12 grid-cols-4 gap-1 xl:w-11/12 xl:gap-2 lg:grid-cols-3 md:grid-cols-2 sm:!flex sm:grid-cols-1 sm:flex-col sm:items-center '>
         <BlogList posts={displayedData} />
       </div>
-      <div className="flex justify-center">
+      <div className='flex justify-center'>
         {posts.posts.length !== displayedData.length ? (
           <button
-            type="button"
+            type='button'
             onClick={handleLoadMore}
-            className="my-5 mb-2 mr-2 rounded-full bg-gray-800 px-5 py-2.5 text-sm font-medium text-white hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
+            className='my-5 mb-2 mr-2 rounded-full bg-gray-800 px-5 py-2.5 text-sm font-medium text-white hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700'
           >
             Load More
           </button>
         ) : (
-          <div className="my-5 rounded bg-gray-300 px-36 py-5 text-2xl font-semibold text-darkgray">
+          <div className='my-5 rounded bg-gray-300 px-36 py-5 text-2xl font-semibold text-darkgray'>
             No more result
           </div>
         )}
       </div>
     </>
   ) : (
-    <div className="flex justify-center">
-      <div className="mt-28 rounded bg-gray-300 px-36 py-5 text-2xl font-semibold text-darkgray">
+    <div className='flex justify-center'>
+      <div className='mt-28 rounded bg-gray-300 px-36 py-5 text-2xl font-semibold text-darkgray'>
         No result Found
       </div>
     </div>

@@ -1,20 +1,20 @@
-import type { PayloadAction } from "@reduxjs/toolkit";
-import { createSlice } from "@reduxjs/toolkit";
-import { HYDRATE } from "next-redux-wrapper";
+import type { PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
+import { HYDRATE } from 'next-redux-wrapper';
 
-import { searchBlog } from "@/api/api";
+import { searchBlog } from '@/api/api';
 
-import type { AppState, AppThunk } from "..";
+import type { AppState, AppThunk } from '..';
 
 export const SearchSlice = createSlice({
-  name: "search",
+  name: 'search',
 
   initialState: {
     data: null,
   },
 
   reducers: {
-    setSearchData: (state, action: PayloadAction<any>) => {
+    setSearchData: (state:any, action: PayloadAction<any>) => {
       state.data = action.payload;
     },
   },

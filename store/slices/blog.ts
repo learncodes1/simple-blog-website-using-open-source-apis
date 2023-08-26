@@ -1,10 +1,10 @@
-import type { PayloadAction } from "@reduxjs/toolkit";
-import { createSlice } from "@reduxjs/toolkit";
-import { HYDRATE } from "next-redux-wrapper";
+import type { PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
+import { HYDRATE } from 'next-redux-wrapper';
 
-import { blogFetchPage } from "@/api/api";
+import { blogFetchPage } from '@/api/api';
 
-import type { AppState, AppThunk } from "..";
+import type { AppState, AppThunk } from '..';
 
 export interface BlogData {
   data: any;
@@ -15,7 +15,7 @@ const initialState: BlogData = {
 };
 
 export const BlogSlice = createSlice({
-  name: "blog",
+  name: 'blog',
   initialState,
   reducers: {
     setBlogData: (state, action: PayloadAction<any>) => {

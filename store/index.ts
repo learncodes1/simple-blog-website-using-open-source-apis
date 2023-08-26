@@ -1,10 +1,10 @@
-import type { ThunkAction } from "@reduxjs/toolkit";
-import { configureStore } from "@reduxjs/toolkit";
-import { createWrapper } from "next-redux-wrapper";
-import type { Action } from "redux";
+import type { ThunkAction } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
+import { createWrapper } from 'next-redux-wrapper';
+import type { Action } from 'redux';
 
-import blogReducer from "./slices/blog";
-import searchReducer from "./slices/search";
+import blogReducer from './slices/blog';
+import searchReducer from './slices/search';
 
 const makeStore = () =>
   configureStore({
@@ -16,7 +16,7 @@ const makeStore = () =>
   });
 
 export type AppStore = ReturnType<typeof makeStore>;
-export type AppState = ReturnType<AppStore["getState"]>;
+export type AppState = ReturnType<AppStore['getState']>;
 export type AppThunk<ReturnType = void> = ThunkAction<
   ReturnType,
   AppState,

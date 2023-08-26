@@ -70,70 +70,70 @@ const CreatePost = () => {
 
   return (
     <>
-      <div className="mx-auto mt-28  max-w-md rounded bg-white p-6 shadow">
-        <h2 className="mb-4 text-2xl font-semibold">Add Post</h2>
-        <div className="mb-4">
+      <div className='mx-auto mt-28  max-w-md rounded bg-white p-6 shadow'>
+        <h2 className='mb-4 text-2xl font-semibold'>Add Post</h2>
+        <div className='mb-4'>
           <label
-            htmlFor="title"
-            className="block text-sm font-medium text-gray-700"
+            htmlFor='title'
+            className='block text-sm font-medium text-gray-700'
           >
             Title
           </label>
           <input
-            type="text"
-            id="title"
-            className="mt-1 w-full rounded-md border p-2"
+            type='text'
+            id='title'
+            className='mt-1 w-full rounded-md border p-2'
             value={postData.title}
             onChange={handleTitleChange}
           />
         </div>
-        <div className="mb-4">
+        <div className='mb-4'>
           <label
-            htmlFor="body"
-            className="block text-sm font-medium text-gray-700"
+            htmlFor='body'
+            className='block text-sm font-medium text-gray-700'
           >
             Body
           </label>
           <textarea
-            id="body"
-            className="mt-1 w-full rounded-md border p-2"
+            id='body'
+            className='mt-1 w-full rounded-md border p-2'
             rows={4}
             value={postData.body}
             onChange={handleBodyChange}
           />
 
           <label
-            className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
-            htmlFor="file_input"
+            className='mb-2 block text-sm font-medium text-gray-900 dark:text-white'
+            htmlFor='file_input'
           >
             Upload file
           </label>
           <input
-            className="block w-full cursor-pointer rounded-lg border border-gray-300 bg-gray-50 text-sm text-gray-900 focus:outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-gray-400 dark:placeholder:text-gray-400"
-            id="file_input"
-            type="file"
+            className='block w-full cursor-pointer rounded-lg border border-gray-300 bg-gray-50 text-sm text-gray-900 focus:outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-gray-400 dark:placeholder:text-gray-400'
+            id='file_input'
+            type='file'
             value={postData.img}
             onChange={handleImageChange}
           />
         </div>
         <button
-          type="button"
-          className="rounded bg-blue-500 px-4 py-2 font-semibold text-white hover:bg-blue-600 focus:outline-none"
+          type='button'
+          className='rounded bg-blue-500 px-4 py-2 font-semibold text-white hover:bg-blue-600 focus:outline-none'
           onClick={handleAddPost}
         >
           Add Post
         </button>
       </div>
       {fetchStatus.status === 201 ? (
-        <div className="my-5 rounded bg-gray-300 px-36 py-5 text-2xl font-semibold text-darkgray">
+        <div className='my-5 rounded bg-gray-300 px-36 py-5 text-2xl font-semibold text-darkgray'>
           Successfully added
         </div>
       ) : fetchStatus.status === 500 ? (
-        <div className="my-5 rounded bg-red-500 px-36 py-5 text-2xl font-semibold text-darkgray">
+        <div className='my-5 rounded bg-red-500 px-36 py-5 text-2xl font-semibold text-darkgray'>
           Failed to add post
         </div>
       ) : fetchStatus.status === 400 ? (
-        <div className="my-5 rounded bg-red-500 px-36 py-5 text-2xl font-semibold text-darkgray">
+        <div className='my-5 rounded bg-red-500 px-36 py-5 text-2xl font-semibold text-darkgray'>
           Validation error: Please fill all fields
         </div>
       ) : (
