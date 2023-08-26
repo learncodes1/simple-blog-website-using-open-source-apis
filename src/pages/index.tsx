@@ -14,6 +14,7 @@ export interface PostData {
   body: string;
   img: string;
   title: string;
+  status:number;
 }
 type SSRpostsProp = {
   posts: PostData[];

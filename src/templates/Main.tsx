@@ -4,6 +4,7 @@ import { AppConfig } from '@/utils/AppConfig';
 
 type IMainProps = {
   children: ReactNode;
+  meta: ReactNode;
 };
 
 const Main = (props: IMainProps) => (
