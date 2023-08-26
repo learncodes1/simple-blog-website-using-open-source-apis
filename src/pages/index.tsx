@@ -5,7 +5,7 @@ import { wrapper } from 'store';
 import { fetchBlogData, selectBlogData } from 'store/slices/blog';
 
 import BlogList from '@/components/BlogList';
-import { LoadingList } from '@/components/Loading';
+import LoadingList  from '@/components/Loading';
 import { Meta } from '@/layouts/Meta';
 import { Main } from '@/templates/Main';
 
@@ -62,13 +62,9 @@ const Index = ({ posts,status }: SSRpostsProp) => {
       }
     >
       <div className="mx-auto my-0 grid w-9/12 grid-cols-4 gap-1 xl:w-11/12 xl:gap-2 lg:grid-cols-3 md:grid-cols-2 sm:!flex sm:grid-cols-1 sm:flex-col sm:items-center">
-        {loading ? (
-          <LoadingList />
-        ) : status !== 500 ? (
-          <BlogList posts={posts.posts} />
-        ) : (
-          <div className="">No Post Found</div>
-        )}
+        {loading ? (<> <LoadingList /> </>
+        ) : status !== 500 ? (<> <BlogList posts={posts.posts} /> </>
+        ) : ( <div className="">No Post Found</div> )}
       </div>
       <div className="my-2 flex justify-center">
         <button

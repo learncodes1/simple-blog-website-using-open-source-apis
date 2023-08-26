@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import type { AppStore } from 'store';
+// import type { AppStore } from 'store';
 import { wrapper } from 'store';
 import { fetchBlog, filteredData } from 'store/slices/search';
 
@@ -8,11 +8,11 @@ import BlogList from '@/components/BlogList';
 import type { PostData } from '..';
 
 type SSRpostListProp = {
-  posts: PostData[];
+  posts:{posts: PostData[];}
 };
 
 // with redux
-export const getServerSideProps = wrapper.getServerSideProps<AppStore>(
+export const getServerSideProps = wrapper.getServerSideProps(
   (store) => async (context: any) => {
     const { params } = context;
     await store.dispatch(fetchBlog(params.search));
@@ -54,27 +54,27 @@ export const getServerSideProps = wrapper.getServerSideProps<AppStore>(
 const Search = ({ posts }: SSRpostListProp) => {
   const itemsPerPage = 10;
   const [displayedData, setDisplayedData] = useState(
-    posts.slice(0, itemsPerPage),
+    posts.posts.slice(0, itemsPerPage),
   );
 
   const handleLoadMore = () => {
     const nextDataStartIndex = displayedData.length;
     const nextDataEndIndex = nextDataStartIndex + itemsPerPage;
-    const nextData = posts.slice(nextDataStartIndex, nextDataEndIndex);
+    const nextData = posts.posts.slice(nextDataStartIndex, nextDataEndIndex);
     setDisplayedData([...displayedData, ...nextData]);
   };
 
-  return posts.length !== 0 ? (
+  return posts.posts.length !== 0 ? (
     <>
       <div className="mb-10  mt-28 flex justify-center text-lg text-slate-600">
-        Total: <span className="mx-1 font-bold"> {posts.length} </span> result
+        Total: <span className="mx-1 font-bold"> {posts.posts.length} </span> result
         found
       </div>
       <div className="mx-auto my-0 grid w-9/12 grid-cols-4 gap-1 xl:w-11/12 xl:gap-2 lg:grid-cols-3 md:grid-cols-2 sm:!flex sm:grid-cols-1 sm:flex-col sm:items-center ">
         <BlogList posts={displayedData} />
       </div>
       <div className="flex justify-center">
-        {posts.length !== displayedData.length ? (
+        {posts.posts.length !== displayedData.length ? (
           <button
             type="button"
             onClick={handleLoadMore}

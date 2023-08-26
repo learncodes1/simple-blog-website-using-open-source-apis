@@ -6,11 +6,11 @@ import { blogFetchPage } from '@/api/api';
 
 import type { AppState, AppThunk } from '..';
 
-interface BlogState {
+export interface BlogData {
   data: any;
 }
 
-const initialState:BlogState = {
+const initialState:BlogData = {
   data: null,
 }
 

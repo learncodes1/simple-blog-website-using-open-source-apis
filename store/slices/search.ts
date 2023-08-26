@@ -20,7 +20,7 @@ export const SearchSlice = createSlice({
   },
 
   extraReducers: (builder) => {
-    builder.addCase(HYDRATE, (state, action) => {
+    builder.addCase(HYDRATE, (state:any, action:any) => {
       if (!action.payload.search) {
         return state;
       }
@@ -34,7 +34,7 @@ export const { setSearchData } = SearchSlice.actions;
 export const filteredData = (state: AppState) => state.search.data;
 
 export const fetchBlog =
-  (params): AppThunk =>
+  (params:any): AppThunk =>
   async (dispatch) => {
     const data = await searchBlog(params);
     dispatch(setSearchData(data));
