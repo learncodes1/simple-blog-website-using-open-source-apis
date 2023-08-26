@@ -1,10 +1,10 @@
-const postBaseUrl: string = 'https://jsonplaceholder.typicode.com/posts';
-const imageBaseUrl: string = 'https://picsum.photos/v2/list';
+const postBaseUrl: string = "https://jsonplaceholder.typicode.com/posts";
+const imageBaseUrl: string = "https://picsum.photos/v2/list";
 
 const fetchReq = {
-  method: 'GET',
+  method: "GET",
   headers: {
-    'Content-type': 'application/json',
+    "Content-type": "application/json",
   },
 };
 export const blogFetchPost = async (id?: number) => {
@@ -29,7 +29,7 @@ export const blogFetchPage = async (pageNo?: number) => {
       fetch(imageUrl, fetchReq),
     ]);
     if (!postResponse.ok || !imageResponse.ok) {
-      throw new Error('Failed to fetch data.');
+      throw new Error("Failed to fetch data.");
     }
     const postData = await postResponse.json();
     const imageData = await imageResponse.json();
@@ -41,20 +41,20 @@ export const blogFetchPage = async (pageNo?: number) => {
       return { ...item, ...imageLink[i] };
     });
 
-    return {posts:blogData,status:200};
+    return { posts: blogData, status: 200 };
   } catch (error) {
     return { status: 500 };
   }
 };
 
 export const searchBlog = async (params?: string) => {
-  const newParams = params?.split(' ').join('-');
+  const newParams = params?.split(" ").join("-");
   try {
     const response = await fetch(postBaseUrl, fetchReq);
     const data = await response.json();
     const filteredData = data.filter(
       (item: any) =>
-        !!(item.title.includes(newParams) || item.body.includes(newParams)),
+        !!(item.title.includes(newParams) || item.body.includes(newParams))
     );
 
     const imageUrl: string = `${imageBaseUrl}?page=1&limit=${newParams}`;
@@ -66,7 +66,7 @@ export const searchBlog = async (params?: string) => {
     const blogData = filteredData.map((item: any, i: number) => {
       return { ...item, ...imageLink[i] };
     });
-    return {posts:blogData,status:200};
+    return { posts: blogData, status: 200 };
   } catch (error) {
     return error;
   }

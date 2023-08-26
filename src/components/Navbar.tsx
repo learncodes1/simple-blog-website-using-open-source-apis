@@ -1,25 +1,25 @@
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import router from 'next/router';
-import React, { useState } from 'react';
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import router from "next/router";
+import React, { useState } from "react";
 
-import Toggler from './Toggler';
+import Toggler from "./Toggler";
 
 const Navbar = () => {
   const pathname = usePathname();
 
   const [toggle, setToggle] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const trimmedValue = String(searchQuery).trim();
-    trimmedValue !== ''
+    trimmedValue !== ""
       ? router.push({
-          pathname: `/search/${searchQuery.split(' ').join('-')}`,
+          pathname: `/search/${searchQuery.split(" ").join("-")}`,
         })
-      : '';
-    setSearchQuery('');
+      : "";
+    setSearchQuery("");
   };
 
   return (
@@ -39,15 +39,15 @@ const Navbar = () => {
             <ul
               className={`left-0 mr-[15px] flex gap-x-6 overflow-hidden  sm:absolute sm:top-[120%] sm:w-full sm:flex-col sm:gap-y-4 sm:rounded-[15px] sm:bg-gray-900 sm:p-[25px]${
                 toggle
-                  ? ' sm:[clip-path:polygon(0_0,100%_0,100%_100%,0_100%)]'
-                  : ' sm:[clip-path:polygon(0_0,100%_0,100%_0,0_0)]'
+                  ? " sm:[clip-path:polygon(0_0,100%_0,100%_100%,0_100%)]"
+                  : " sm:[clip-path:polygon(0_0,100%_0,100%_0,0_0)]"
               }`}
             >
               <li>
                 <Link
                   href="/"
                   className={`font-medium${
-                    pathname === '/' ? ' active text-white' : ' text-mediumgray'
+                    pathname === "/" ? " active text-white" : " text-mediumgray"
                   }`}
                 >
                   Home
@@ -57,9 +57,9 @@ const Navbar = () => {
                 <Link
                   href="/create-post"
                   className={`font-medium${
-                    pathname === '/create-post/'
-                      ? ' text-white'
-                      : ' text-[#828282]'
+                    pathname === "/create-post/"
+                      ? " text-white"
+                      : " text-[#828282]"
                   }`}
                 >
                   Create post

@@ -15,7 +15,7 @@ module.exports = withBundleAnalyzer({
   // You can remove `basePath` if you don't need it.
   reactStrictMode: true,
   images: {
-    domains: ["picsum.photos"],
-    formats: ["image/webp"],
+    domains: ['picsum.photos'],
+    formats: ['image/webp'],
   },
 });

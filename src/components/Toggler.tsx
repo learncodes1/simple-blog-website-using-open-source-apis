@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 type Toggler = {
   onChange: any;
-  className: String
+  className: String;
 };
-const Toggler = ({ onChange, className }:Toggler) => {
+const Toggler = ({ onChange, className }: Toggler) => {
   const [toggle, setToggle] = useState<boolean>(false);
 
   return (
     <span
       className={`toggler flex flex-col gap-y-1${
-        className ? ` ${className}` : ''
+        className ? ` ${className}` : ""
       }`}
       onClick={() => {
         setToggle(!toggle), onChange(!toggle);
@@ -18,17 +18,17 @@ const Toggler = ({ onChange, className }:Toggler) => {
     >
       <span
         className={`relative inline-block h-[2px] w-[25px] bg-white transition-all duration-300${
-          toggle ? ' top-[6px] rotate-45' : ''
+          toggle ? " top-[6px] rotate-45" : ""
         }`}
       />
       <span
         className={`relative inline-block h-[2px] w-[25px] bg-white transition-all duration-300${
-          toggle ? ' opacity-0' : ''
+          toggle ? " opacity-0" : ""
         }`}
       />
       <span
         className={`relative inline-block h-[2px] w-[25px] bg-white transition-all duration-300${
-          toggle ? ' -top-[6px] -rotate-45' : ''
+          toggle ? " -top-[6px] -rotate-45" : ""
         }`}
       />
     </span>

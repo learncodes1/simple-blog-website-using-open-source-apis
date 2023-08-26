@@ -1,14 +1,14 @@
-import { useState } from 'react';
+import { useState } from "react";
 // import type { AppStore } from 'store';
-import { wrapper } from 'store';
-import { fetchBlog, filteredData } from 'store/slices/search';
+import { wrapper } from "store";
+import { fetchBlog, filteredData } from "store/slices/search";
 
-import BlogList from '@/components/BlogList';
+import BlogList from "@/components/BlogList";
 
-import type { PostData } from '..';
+import type { PostData } from "..";
 
 type SSRpostListProp = {
-  posts:{posts: PostData[];}
+  posts: { posts: PostData[] };
 };
 
 // with redux
@@ -24,7 +24,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
         posts,
       },
     };
-  },
+  }
 );
 
 // without redux
@@ -54,7 +54,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
 const Search = ({ posts }: SSRpostListProp) => {
   const itemsPerPage = 10;
   const [displayedData, setDisplayedData] = useState(
-    posts.posts.slice(0, itemsPerPage),
+    posts.posts.slice(0, itemsPerPage)
   );
 
   const handleLoadMore = () => {
@@ -67,8 +67,8 @@ const Search = ({ posts }: SSRpostListProp) => {
   return posts.posts.length !== 0 ? (
     <>
       <div className="mb-10  mt-28 flex justify-center text-lg text-slate-600">
-        Total: <span className="mx-1 font-bold"> {posts.posts.length} </span> result
-        found
+        Total: <span className="mx-1 font-bold"> {posts.posts.length} </span>{" "}
+        result found
       </div>
       <div className="mx-auto my-0 grid w-9/12 grid-cols-4 gap-1 xl:w-11/12 xl:gap-2 lg:grid-cols-3 md:grid-cols-2 sm:!flex sm:grid-cols-1 sm:flex-col sm:items-center ">
         <BlogList posts={displayedData} />

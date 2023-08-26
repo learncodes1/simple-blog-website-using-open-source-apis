@@ -1,13 +1,13 @@
-import type { PayloadAction } from '@reduxjs/toolkit';
-import { createSlice } from '@reduxjs/toolkit';
-import { HYDRATE } from 'next-redux-wrapper';
+import type { PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
+import { HYDRATE } from "next-redux-wrapper";
 
-import { searchBlog } from '@/api/api';
+import { searchBlog } from "@/api/api";
 
-import type { AppState, AppThunk } from '..';
+import type { AppState, AppThunk } from "..";
 
 export const SearchSlice = createSlice({
-  name: 'search',
+  name: "search",
 
   initialState: {
     data: null,
@@ -20,7 +20,7 @@ export const SearchSlice = createSlice({
   },
 
   extraReducers: (builder) => {
-    builder.addCase(HYDRATE, (state:any, action:any) => {
+    builder.addCase(HYDRATE, (state: any, action: any) => {
       if (!action.payload.search) {
         return state;
       }
@@ -34,7 +34,7 @@ export const { setSearchData } = SearchSlice.actions;
 export const filteredData = (state: AppState) => state.search.data;
 
 export const fetchBlog =
-  (params:any): AppThunk =>
+  (params: any): AppThunk =>
   async (dispatch) => {
     const data = await searchBlog(params);
     dispatch(setSearchData(data));
