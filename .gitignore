@@ -5,16 +5,6 @@
 /.pnp
 .pnp.js
 
-# testing
-/coverage
-
-# storybook
-storybook-static
-
-# cypress
-cypress/screenshots
-cypress/videos
-
 # next.js
 /.next
 /out

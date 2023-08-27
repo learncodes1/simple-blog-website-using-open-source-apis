@@ -40,7 +40,5 @@
       "@/*": ["./src/*"],
       "@/public/*": ["./public/*"]
     }
-  },
-  "exclude": ["./out/**/*", "./node_modules/**/*", "cypress/**/*.ts"],
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".storybook/*.ts"]
+  }
 }
