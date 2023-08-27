@@ -3,7 +3,7 @@ import React from "react";
 const data = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 const LoadingList: React.FC = () => {
   return (
-    <div>
+    <>
       {data.map((item) => (
         <div
           key={item}
@@ -38,7 +38,7 @@ const LoadingList: React.FC = () => {
           </div>
         </div>
       ))}
-    </div>
+    </>
   );
 };
 export default LoadingList;
